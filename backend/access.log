@@ -1,0 +1,2 @@
+::ffff:127.0.0.1 - - [14/Aug/2024:23:46:32 +0000] "GET /library/books HTTP/1.1" 200 2718 "-" "Thunder Client (https://www.thunderclient.com)"
+::ffff:127.0.0.1 - - [14/Aug/2024:23:47:07 +0000] "POST /library/create HTTP/1.1" 400 1038 "-" "Thunder Client (https://www.thunderclient.com)"
