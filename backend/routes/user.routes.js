@@ -62,7 +62,7 @@ router.post("/login",async(req,res)=>{
           }
          
           const accessToken=jwt.sign({email:user.email},process.env.JWT_SECRET_KEY1,{algorithm:"HS256"});
-          res.status(200).json({message:"Login Successful",accessToken})
+          res.status(200).json({message:"Login Successful",accessToken,role:user.role})
     } catch (error) {
         res.status(400).send(error)
     }
