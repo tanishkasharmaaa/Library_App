@@ -22,8 +22,8 @@ router.post("/register",async(req,res)=>{
     
         try {
          const isMatch=await userModel.findOne({email});   
-         if(!isMatch){
-            return res.status(400).json({message:"User already exists"})
+         if(isMatch){
+           res.status(400).json({message:"User already exists"})
          } 
       let user
      bcrypt.hash(password,5, async function(err, hash) {
@@ -38,10 +38,7 @@ router.post("/register",async(req,res)=>{
         }
         await user.save();
     });
-
-      
-        
-        res.status(201).json({message:"registered successfully"})
+res.status(201).json({message:"registered successfully"})
     } catch (error) {
         res.status(400).send(error)
     }
