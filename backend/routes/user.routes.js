@@ -18,9 +18,13 @@ router.get("/",async(req,res)=>{
 
 router.post("/register",async(req,res)=>{
      const {name,email,password,role}=req.body;
-     const isMatch=await userModel.findOne({email});
-     if(!isMatch){
+    
+    
         try {
+         const isMatch=await userModel.findOne({email});   
+         if(!isMatch){
+            return res.status(400).json({message:"User already exists"})
+         } 
       let user
      bcrypt.hash(password,5, async function(err, hash) {
         if(err){
@@ -41,10 +45,8 @@ router.post("/register",async(req,res)=>{
     } catch (error) {
         res.status(400).send(error)
     }
-     }
-    else{
-        res.status(400).json({message:"user exits"})
-    }
+     
+   
 })
 
 router.post("/login",async(req,res)=>{
