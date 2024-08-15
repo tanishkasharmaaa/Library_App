@@ -11,7 +11,7 @@ const path=require("path")
 const libraryRouter=require("./routes/library.routes")
 const morgan = require('morgan')
 
-app.use(cors())
+app.use(cors({ origin: "http://localhost:5173" }))
 
 var accessLogStream = fs.createWriteStream(path.join(__dirname, 'access.log'), { flags: 'a' })
 
