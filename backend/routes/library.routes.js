@@ -22,7 +22,6 @@ libraryRouter.get('/books', [authMiddleware, userMiddleware], async (req, res) =
     try {
         let query = {};
 
-        // Time-based filtering (old/new books)
         if (req.query.old) {
             const timeLimit = new Date(Date.now() - 10 * 60000); // 10 minutes ago
             query.createdAt = { $lt: timeLimit }; // Books created more than 10 minutes ago

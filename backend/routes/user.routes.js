@@ -18,10 +18,11 @@ router.get("/",async(req,res)=>{
 
 router.post("/register",async(req,res)=>{
      const {name,email,password,role}=req.body;
-     console.log(password)
-    try {
+     const isMatch=await userModel.findOne({email});
+     if(!isMatch){
+        try {
       let user
-     let hash= bcrypt.hash(password,5, async function(err, hash) {
+     bcrypt.hash(password,5, async function(err, hash) {
         if(err){
             res.status(400).send(err)
         }
@@ -39,6 +40,10 @@ router.post("/register",async(req,res)=>{
         res.status(201).json({message:"registered successfully"})
     } catch (error) {
         res.status(400).send(error)
+    }
+     }
+    else{
+        res.status(400).json({message:"user exits"})
     }
 })
 
