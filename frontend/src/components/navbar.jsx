@@ -1,16 +1,16 @@
 import { Box, Button, Flex, Heading, Spacer, Link as ChakraLink, IconButton, useDisclosure, Drawer, DrawerBody, DrawerFooter, DrawerHeader, DrawerOverlay, DrawerContent, DrawerCloseButton } from "@chakra-ui/react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { HamburgerIcon } from "@chakra-ui/icons";
 
 function Navbar() {
     const email = JSON.parse(localStorage.getItem("role")).email;
     const role = JSON.parse(localStorage.getItem("role")).role;
-  
+  const navigate=useNavigate()
     const { isOpen, onOpen, onClose } = useDisclosure();
     
     function logout() {
         localStorage.removeItem("token");
-        window.location = '/login';
+    navigate('/login');
     }
 
     return (
