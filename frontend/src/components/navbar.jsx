@@ -5,12 +5,12 @@ import { HamburgerIcon } from "@chakra-ui/icons";
 function Navbar() {
     const email = JSON.parse(localStorage.getItem("role")).email;
     const role = JSON.parse(localStorage.getItem("role")).role;
-  const navigate=useNavigate()
+  let navigate=useNavigate()
     const { isOpen, onOpen, onClose } = useDisclosure();
     
     function logout() {
         localStorage.removeItem("token");
-   return navigate('/login');
+ navigate('/login')
     }
 
     return (
