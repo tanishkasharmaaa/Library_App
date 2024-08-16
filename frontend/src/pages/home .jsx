@@ -6,7 +6,7 @@ if(getToken!==null){
     window.location='/dashboard'
 }
 function handleButton(){
-    window.location="/Register"
+    window.location="/register"
 }
 
 
