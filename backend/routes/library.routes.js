@@ -40,7 +40,7 @@ libraryRouter.get('/books', [authMiddleware, userMiddleware], async (req, res) =
 libraryRouter.delete('/books/:id',[authMiddleware,creatorMiddleware],async(req,res)=>{
     try {
         const books=await booksModel.findByIdAndDelete({_id:req.params.id})
-        res.status(200).send("Data deleted")
+        res.status(200).json({message:"data deleted"})
     } catch (error) {
         res.json({message:"request failure",err:error})
     }
