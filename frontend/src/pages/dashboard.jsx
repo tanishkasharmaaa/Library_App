@@ -2,7 +2,7 @@ import { Box, Flex, Heading, VStack, Text, IconButton, Avatar, Menu, MenuButton,
 import { useEffect, useState } from "react";
 import { FiHome, FiSettings, FiLogOut } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
-import Navbar from "../../components/navbar";
+import Navbar from "../components/navbar";
 
 function Dashboard() {
   const navigate = useNavigate();

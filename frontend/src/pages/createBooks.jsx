@@ -1,5 +1,5 @@
 import { Box, Button, FormControl, FormLabel, Input, Textarea, useToast, VStack, Heading } from "@chakra-ui/react";
-import Navbar from "../../components/navbar";
+import Navbar from "../components/navbar";
 import { useState } from "react";
 
 function CreateBooks() {

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Box, Image, Input, Button, Textarea, VStack, HStack, Flex, useBreakpointValue } from "@chakra-ui/react";
-import Navbar from "../../components/navbar";
+import Navbar from "../components/navbar";
 
 function UpdateAndDelete() {
     const [books, setBooks] = useState([]);
