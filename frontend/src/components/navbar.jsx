@@ -10,7 +10,7 @@ function Navbar() {
     
     function logout() {
         localStorage.removeItem("token");
-    navigate('/login');
+   return navigate('/login');
     }
 
     return (
