@@ -1,12 +1,16 @@
 import { Box, Button, Flex, Heading, Text } from "@chakra-ui/react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 function Home() {
+  let navigate=useNavigate()
 let getToken=localStorage.getItem("token")
 if(getToken!==null){
-    window.location='/dashboard'
+   
+    navigate('/dashboard')
 }
 function handleButton(){
-    window.location="/register"
+   
+    navigate("/register")
 }
 
 

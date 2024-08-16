@@ -1,6 +1,7 @@
 import {Link, Input, Select, Box, Heading, Button, Alert, AlertIcon } from "@chakra-ui/react";
 import { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function Register() {
   const [handleForm, setHandleForm] = useState({
@@ -9,11 +10,12 @@ function Register() {
     password: "",
     role: "",
   });
+  const navigate=useNavigate();
 const token=JSON.parse(localStorage.getItem("token"))
   const [alertMessage, setAlertMessage] = useState(null);
   const [alertStatus, setAlertStatus] = useState(null);
 if(token){
-  window.location='/dashboard'
+navigate('/dashboard')
 }
   function handleFormInfo(e) {
     const { name, value } = e.target;
@@ -42,7 +44,7 @@ if(token){
          
           setAlertStatus("success");
           setAlertMessage("Registration Successful");
-          window.location='/login'
+         navigate('/login')
 
 
         } else {
@@ -145,7 +147,7 @@ if(token){
           >
             Register
           </Button>
-           <Link onClick={()=>(window.location="/login")} color={'blue'}>Login if signup already</Link>
+           <Link onClick={()=>(navigate('/login'))} color={'blue'}>Login if signup already</Link>
         </form>
        
       </Box>
