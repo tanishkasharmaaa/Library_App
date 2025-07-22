@@ -47,7 +47,7 @@ A full-stack Library App built with **React** (frontend) and **Node.js, Express,
 1. Clone the project :
 
    ```bash
-   git clone [text](https://github.com/tanishkasharmaaa/Library_App.git)
+   git clone https://github.com/tanishkasharmaaa/Library_App.git
    ```
 2. Navigate to the `backend` folder:
 
@@ -101,4 +101,4 @@ A full-stack Library App built with **React** (frontend) and **Node.js, Express,
 ![Add Book Screenshot](./githubImages/4.png)
 
 ## Contact
-Created by [Tanishka](https://github.com/tanishkasharmaaa/Myntra) - feel free to reach out on [linkedIn](https://www.linkedin.com/in/tanishka-sharma-304953274/)!
+Created by [Tanishka](https://github.com/tanishkasharmaaa) - feel free to reach out on [linkedIn](https://www.linkedin.com/in/tanishka-sharma-304953274/)!
