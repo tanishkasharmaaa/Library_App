@@ -7,7 +7,7 @@ A full-stack Library App built with **React** (frontend) and **Node.js, Express,
 
 ## 🚀 Live Demo
 
-🔗 [Live App Link](https://your-deployed-url.com)
+🔗 [Live App Link](https://library-app-ten-eta.vercel.app/)
 
 ## 📌 Features
 
