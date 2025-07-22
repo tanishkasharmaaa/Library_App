@@ -9,20 +9,20 @@ const creatorMiddleware=require("../middleware/creatorMiddleware")
 libraryRouter.use(express.json());
 
 libraryRouter.post('/create',[authMiddleware,creatorMiddleware],async(req,res)=>{
-    const {title,author,description,genres,pages,language,publisher,coverImageUrl,availableCopies,createdAt} = req.body
+    const {title,author,description,genres,pages,language,publisher,coverImageUrl,availableCopies,storyContent} = req.body
     try {
         const books=await booksModel({
             creatorId:req.user,
             title,
             author,
             description,
+            storyContent,
             genres,
             pages,
             language,
             publisher,
             coverImageUrl,
-            availableCopies,
-            createdAt
+            availableCopies
         });
         await books.save()
         res.status(201).send(books)
