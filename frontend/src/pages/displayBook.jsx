@@ -9,6 +9,7 @@ import {
   VStack,
   Spinner,
   useToast,
+  Flex,
 } from "@chakra-ui/react";
 import MarkDownReview from "../components/markdown";
 
@@ -85,25 +86,41 @@ export default function DisplayBook() {
           </Heading>
 
           {book.author && (
-            <Text fontSize="lg" color={'gray.800'}>
+            <Text fontSize="lg" color={"gray.800"}>
               <b>Author:</b> {book.author}
             </Text>
           )}
-
-          {book.language && (
-            <Text fontSize="lg" color={'gray.800'}>
-              <b>Language:</b> {book.language}
+          {book.genres && book.genres.length > 0 && (
+            <Flex wrap="wrap" justify="center" gap={2} mt={2}>
+              {book.genres.map((genre, i) => (
+                <Box
+                  key={i}
+                  px={3}
+                  py={1}
+                  bg="blue.100"
+                  color="blue.800"
+                  borderRadius="md"
+                  fontSize="sm"
+                  fontWeight="medium"
+                >
+                  {genre}
+                </Box>
+              ))}
+            </Flex>
+          )}
+          {book.description && (
+            <Text fontSize="lg" color={"gray.800"} pl={4} pr={4}>
+              <b>About Story - </b> {book.description}
             </Text>
           )}
 
-          {book.publisher && (
+          {/* {book.publisher && (
             <Text fontSize="lg" color={'gray.800'}>
               <b>Publisher:</b> {book.publisher}
             </Text>
-          )}
+          )} */}
 
-          <MarkDownReview storyContent={book.storyContent}/>
-
+          <MarkDownReview storyContent={book.storyContent} />
         </VStack>
       </Box>
     </>

@@ -149,7 +149,7 @@ function Register() {
             >
               <option value="CREATOR">CREATOR</option>
               <option value="VIEWER">VIEWER</option>
-              <option value="VIEW_ALL">VIEW_ALL</option>
+             
             </Select>
 
             <Button
