@@ -1,6 +1,6 @@
-const mongoose=require("mongoose");
+require("dotenv").config();
 const express=require('express');
-const dotenv=require("dotenv").config();
+
 const port=process.env.PORT;
 const connection=require("./configs/db")
 const app=express();

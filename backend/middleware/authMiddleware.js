@@ -1,5 +1,4 @@
 const jwt=require("jsonwebtoken");
-const userModel = require("../models/user.model");
 require("dotenv").config();
 
 const creatorMiddleware=(req,res,next)=>{
