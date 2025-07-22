@@ -9,6 +9,7 @@ import {
   Heading,
   VStack,
   useToast,
+  useColorModeValue
 } from "@chakra-ui/react";
 
 function Login() {
@@ -66,27 +67,31 @@ function Login() {
       });
     }
   }
+  const cardBg = useColorModeValue("whiteAlpha.900", "gray.800");
 
   return (
     <Box
       bgImage={
         "https://i.pinimg.com/564x/11/08/3a/11083abffd7da56da0ba2205ebb3a6be.jpg"
       }
-      bgSize="cover"
-      bgPos="center"
-      height="100vh"
+       bgSize="cover"
+      bgPosition="center"
+      minH="100vh"
       display="flex"
       alignItems="center"
       justifyContent="center"
+      px={4}
     >
       <Box
-        bg="rgba(255, 255, 255, 0.9)"
-        p={8}
-        borderRadius="lg"
-        boxShadow="lg"
+        bg={cardBg}
+        p={{ base: 6, sm: 8 }}
+        borderRadius="2xl"
+        boxShadow="2xl"
         width="100%"
-        maxW="400px"
+        maxW="450px"
         textAlign="center"
+        backdropFilter="blur(10px)"
+        border="1px solid rgba(255, 255, 255, 0.2)"
       >
         <Heading textAlign="center" mb={6}>
           Login
@@ -101,7 +106,9 @@ function Login() {
                 name="email"
                 onChange={handleForm}
                 placeholder="Enter your email"
-                focusBorderColor="teal.400"
+                variant="filled"
+              focusBorderColor="teal.500"
+              _placeholder={{ color: "gray.500" }}
               />
             </FormControl>
 
@@ -113,7 +120,9 @@ function Login() {
                 name="password"
                 onChange={handleForm}
                 placeholder="Enter your password"
-                focusBorderColor="teal.400"
+                variant="filled"
+              focusBorderColor="teal.500"
+              _placeholder={{ color: "gray.500" }}
               />
             </FormControl>
 

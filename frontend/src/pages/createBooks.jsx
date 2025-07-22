@@ -17,12 +17,11 @@ function CreateBooks() {
     title: "",
     author: "",
     description: "",
+    storyContent:"",
     genres: [""],
-    pages: 0,
     language: "",
-    bookPublisher: "",
+    publisher: "",
     coverImageUrl: "",
-    availableCopies: 1,
   });
 
   const token = JSON.parse(localStorage.getItem("token"));
@@ -55,6 +54,17 @@ function CreateBooks() {
         duration: 5000,
         isClosable: true,
       });
+      setForm({
+    title: "",
+    author: "",
+    description: "",
+    storyContent:"",
+    genres: [""],
+    pages: 0,
+    language: "",
+    publisher: "",
+    coverImageUrl: "",
+  })
     } catch (error) {
       toast({
         title: "Error",
@@ -132,18 +142,16 @@ function CreateBooks() {
                 color="black"
               />
             </FormControl>
-
-            <FormControl>
-              <FormLabel>Description / Story</FormLabel>
-              <Textarea
+             <FormControl>
+              <FormLabel>Description</FormLabel>
+              <Input
+                type="text"
                 name="description"
-                placeholder="Write a detailed description or story..."
+                placeholder="Description"
                 value={form.description}
                 onChange={handleForm}
                 bg="white"
                 color="black"
-                rows={6}
-                resize="vertical"
               />
             </FormControl>
 
@@ -171,18 +179,7 @@ function CreateBooks() {
               </Button>
             </FormControl>
 
-            <FormControl>
-              <FormLabel>Pages</FormLabel>
-              <Input
-                type="number"
-                name="pages"
-                placeholder="Number of pages"
-                value={form.pages}
-                onChange={handleForm}
-                bg="white"
-                color="black"
-              />
-            </FormControl>
+           
 
             <FormControl>
               <FormLabel>Language</FormLabel>
@@ -199,9 +196,9 @@ function CreateBooks() {
             <FormControl>
               <FormLabel>Publisher</FormLabel>
               <Input
-                name="bookPublisher"
+                name="publisher"
                 placeholder="Publisher name"
-                value={form.bookPublisher}
+                value={form.publisher}
                 onChange={handleForm}
                 bg="white"
                 color="black"
@@ -221,14 +218,16 @@ function CreateBooks() {
             </FormControl>
 
             <FormControl>
-              <FormLabel>Available Copies</FormLabel>
-              <Input
-                type="number"
-                name="availableCopies"
-                value={form.availableCopies}
+              <FormLabel>Story content</FormLabel>
+              <Textarea
+                name="storyContent"
+                placeholder="Write a detailed description or story..."
+                value={form.storyContent}
                 onChange={handleForm}
                 bg="white"
                 color="black"
+                rows={6}
+                resize="vertical"
               />
             </FormControl>
 

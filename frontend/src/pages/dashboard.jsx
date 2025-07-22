@@ -1,4 +1,4 @@
-import { Box, Flex, Heading, VStack, Text, IconButton, Avatar, Menu, MenuButton, MenuItem, MenuList, Image, Alert, AlertIcon, AlertTitle, AlertDescription, CloseButton, useDisclosure, Input } from "@chakra-ui/react";
+import { Box, Flex, Heading, VStack, Text, IconButton, Avatar, Menu, MenuButton, MenuItem, MenuList, Image, Alert, AlertIcon, AlertTitle, AlertDescription, CloseButton, useDisclosure, Input, Grid ,useColorModeValue} from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { FiHome, FiSettings, FiLogOut } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
@@ -57,6 +57,7 @@ async function getBooks() {
     });
     const data = await res.json();
     setBooks(data);
+    console.log(data)
   } catch (error) {
     console.log(error);
   }
@@ -92,7 +93,7 @@ useEffect(() => {
 useEffect(() => {
   getBooks();
 }, []);
-
+const bgCard = useColorModeValue("white", "white");
   return (<>
   <Navbar/>
     <Flex height="100vh" >
@@ -116,46 +117,47 @@ useEffect(() => {
         </Flex>
 <Input type="text" placeholder="Search your query eg: new=1 ,old=1 " onChange={handleSearch} />
         {/* Dashboard Content */}
-        <Flex justifyContent="space-between" flexWrap="wrap" p={4} gap={6}>
-          {result.map((ele,i) => (
-            
+        <Grid
+          templateColumns={["1fr", "repeat(2, 1fr)", "repeat(3, 1fr)"]}
+          gap={6}
+          alignItems="stretch"
+        >
+          {result.map((ele, i) => (
             <Box
               key={i}
-              width={["100%", "48%", "30%"]}
+              bg={bgCard}
               p={4}
-              bg="white"
-              borderRadius="md"
-              boxShadow="sm"
-              _hover={{ boxShadow: "lg" }}
-              transition="all 0.3s ease"
+              borderRadius="lg"
+              boxShadow="md"
+              transition="transform 0.3s ease, box-shadow 0.3s ease"
+              _hover={{ transform: "translateY(-5px)", boxShadow: "xl" }}
             >
               <Link to={`/displayBook/${ele._id}`}>
-              <Image
-                src={ele.coverImageUrl}
-                alt={`Cover image of ${ele.title}`}
-                borderRadius="md"
-                mb={4}
-                objectFit="cover"
-                width="100%"
-                height="200px"
-              />
-              <VStack spacing={2} align="start">
-                <Heading as="h2" size="md" color={'black'}>
-                  {ele.title}
-                </Heading>
-                <Text fontSize="sm" color="gray.600">
-                  by {ele.author}
-                </Text>
-                <Text fontSize="sm" color="gray.500">
-                  {ele.pages} pages | {ele.language}
-                </Text>
-                <Text mt={2} fontWeight="bold" color={'black'}>
-                  Available Copies: {ele.availableCopies}
-                </Text>
-              </VStack>
-            </Link></Box>
+                <Image
+                  src={ele.coverImageUrl}
+                  alt={`Cover image of ${ele.title}`}
+                  borderRadius="md"
+                  mb={4}
+                  objectFit="cover"
+                  width="100%"
+                  height="200px"
+                />
+                <VStack spacing={2} align="start">
+                  <Heading as="h3" size="md" color="black">
+                    {ele.title}
+                  </Heading>
+                  <Text fontSize="sm" color="gray.600">
+                    by {ele.author}
+                  </Text>
+                  <Text fontSize="sm" color="gray.500">
+                    {ele.pages} pages | {ele.language}
+                  </Text>
+                  
+                </VStack>
+              </Link>
+            </Box>
           ))}
-        </Flex>
+        </Grid>
         
         {/* Logout Alert */}
         <Alert

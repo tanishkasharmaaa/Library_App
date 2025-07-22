@@ -101,9 +101,9 @@ export default function DisplayBook() {
             </Text>
           )}
 
-          {book.description && (
+          {book.storyContent && (
   <Box w="100%" bg="gray.50" p={4} borderRadius="lg">
-    {book.description.split("\n").map((line, index) => {
+    {book.storyContent.split("\n").map((line, index) => {
       if (line.startsWith("# ")) {
         return (
           <Heading size="md" mt={4} key={index} color="blue.700">
