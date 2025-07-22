@@ -1,7 +1,7 @@
 const express=require("express");
 const dotenv=require("dotenv").config();
 const libraryRouter=express.Router();
-const booksModel=require("../models/books.model");
+const booksModel=require("../models/Book");
 const authMiddleware = require("../middleware/authMiddleware");
 const userMiddleware=require("../middleware/userMiddleware");
 const creatorMiddleware=require("../middleware/creatorMiddleware")
