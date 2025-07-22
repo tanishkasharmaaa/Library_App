@@ -1,5 +1,9 @@
 const mongoose=require("mongoose");
 const booksSchema= mongoose.Schema({
+   creatorId:{
+    type:mongoose.Schema.Types.objectId,
+    ref:"user"
+   },
     title: {
         type: String,
         required: true,

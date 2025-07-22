@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { FiHome, FiSettings, FiLogOut } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../components/navbar";
+import { Link } from "react-router-dom";
 
 function Dashboard() {
   const navigate = useNavigate();
@@ -94,7 +95,7 @@ useEffect(() => {
 
   return (<>
   <Navbar/>
-    <Flex height="100vh" bg="gray.100">
+    <Flex height="100vh" >
   
       
 
@@ -117,6 +118,7 @@ useEffect(() => {
         {/* Dashboard Content */}
         <Flex justifyContent="space-between" flexWrap="wrap" p={4} gap={6}>
           {result.map((ele,i) => (
+            
             <Box
               key={i}
               width={["100%", "48%", "30%"]}
@@ -127,6 +129,7 @@ useEffect(() => {
               _hover={{ boxShadow: "lg" }}
               transition="all 0.3s ease"
             >
+              <Link to={`/displayBook/${ele._id}`}>
               <Image
                 src={ele.coverImageUrl}
                 alt={`Cover image of ${ele.title}`}
@@ -137,7 +140,7 @@ useEffect(() => {
                 height="200px"
               />
               <VStack spacing={2} align="start">
-                <Heading as="h2" size="md">
+                <Heading as="h2" size="md" color={'black'}>
                   {ele.title}
                 </Heading>
                 <Text fontSize="sm" color="gray.600">
@@ -146,12 +149,11 @@ useEffect(() => {
                 <Text fontSize="sm" color="gray.500">
                   {ele.pages} pages | {ele.language}
                 </Text>
-                <Text mt={2}>{ele.description}</Text>
-                <Text mt={2} fontWeight="bold">
+                <Text mt={2} fontWeight="bold" color={'black'}>
                   Available Copies: {ele.availableCopies}
                 </Text>
               </VStack>
-            </Box>
+            </Link></Box>
           ))}
         </Flex>
         

@@ -13,7 +13,7 @@ const userMiddleware=(req,res,next)=>{
         let email=decoded.email
         let resultUser=await userModel.findOne({email})
         if(resultUser.role==="CREATOR"){
-        
+        req.user=decoded.id
             next()
         }
        

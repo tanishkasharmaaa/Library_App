@@ -7,6 +7,7 @@ import Dashboard from './pages/dashboard'
 import Register from './pages/register'
 import CreateBooks from './pages/createBooks'
 import UpdateAndDelete from './pages/update&delete'
+import DisplayBook from './pages/displayBook'
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
 <Route path='/dashboard' element={<Dashboard/>}/>
 <Route path='/create' element={<CreateBooks/>}/>
 <Route path='/update&delete' element={<UpdateAndDelete/>}/>
+<Route path='/displayBook/:id' element={<DisplayBook/>}/>
       </Routes>
     </>
   )

@@ -9,8 +9,21 @@ const creatorMiddleware=require("../middleware/creatorMiddleware")
 libraryRouter.use(express.json());
 
 libraryRouter.post('/create',[authMiddleware,creatorMiddleware],async(req,res)=>{
+    const {title,author,description,genres,pages,language,publisher,coverImageUrl,availableCopies,createdAt} = req.body
     try {
-        const books=new booksModel(req.body);
+        const books=await booksModel({
+            creatorId:req.user,
+            title,
+            author,
+            description,
+            genres,
+            pages,
+            language,
+            publisher,
+            coverImageUrl,
+            availableCopies,
+            createdAt
+        });
         await books.save()
         res.status(201).send(books)
     } catch (error) {
@@ -45,6 +58,16 @@ libraryRouter.get('/books/:id', [authMiddleware, userMiddleware], async (req, re
         res.status(500).send({ message: "Failed to fetch books", error });
     }
 });
+
+libraryRouter.get('/createdBooks',async(req,res)=>{
+    try {
+        const createdBooks= await booksModel.find({creatorId:req.user})
+        res.send(createdBooks)
+    } catch (error) {
+        console.log(error)
+         res.status(500).send({ message: "Failed to fetch books", error });
+    }
+})
 
 libraryRouter.delete('/books/:id',[authMiddleware,creatorMiddleware],async(req,res)=>{
     try {

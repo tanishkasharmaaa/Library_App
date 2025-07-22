@@ -60,7 +60,7 @@ router.post("/login",async(req,res)=>{
             return res.status(400).json({message:"incorrect password"});
           }
          
-          const accessToken=jwt.sign({email:user.email},process.env.JWT_SECRET_KEY1,{algorithm:"HS256"});
+          const accessToken=jwt.sign({id:user._id,email:user.email},process.env.JWT_SECRET_KEY1,{algorithm:"HS256"});
           res.status(200).json({message:"Login Successful",accessToken,role:user.role})
     } catch (error) {
         res.status(400).send(error)

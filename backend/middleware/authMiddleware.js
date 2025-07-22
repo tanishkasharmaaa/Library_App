@@ -1,15 +1,16 @@
 const jwt=require("jsonwebtoken");
 const userModel = require("../models/user.model");
-const dotenv=require("dotenv").config();
+require("dotenv").config();
 
 const creatorMiddleware=(req,res,next)=>{
     const authHeader=req.headers["authorization"];
     const token=authHeader&&authHeader.split(" ")[1];
-    jwt.verify(token,"masaiLibrary",async function(err,decoded){
+    jwt.verify(token,process.env.JWT_SECRET_KEY1,async function(err,decoded){
     if(err){
         res.status(400).send(err)
     }
     if(decoded){
+    req.user=decoded.id
         next()
     }
     });
