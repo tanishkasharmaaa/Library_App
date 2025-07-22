@@ -69,22 +69,45 @@ libraryRouter.get('/createdBooks',async(req,res)=>{
     }
 })
 
-libraryRouter.delete('/books/:id',[authMiddleware,creatorMiddleware],async(req,res)=>{
-    try {
-        const books=await booksModel.findByIdAndDelete({_id:req.params.id})
-        res.status(200).json({message:"data deleted"})
-    } catch (error) {
-        res.json({message:"request failure",err:error})
-    }
-})
+libraryRouter.delete('/books/:id', [authMiddleware, creatorMiddleware], async (req, res) => {
+  try {
+    const deletedBook = await booksModel.findOneAndDelete({
+      _id: req.params.id,
+      creatorId: req.user,
+    });
 
-libraryRouter.patch('/books/:id',[authMiddleware,creatorMiddleware],async(req,res)=>{
-    try {
-        const books=await booksModel.findByIdAndUpdate({_id:req.params.id},req.body);
-        res.status(200).send("Data updated")
-    } catch (error) {
-        res.json({message:"request failure",err:error})
+    if (!deletedBook) {
+      return res.status(404).json({ message: "Book not found or unauthorized" });
     }
-})
+
+    res.status(200).json({ message: "Book deleted successfully" });
+  } catch (error) {
+    res.status(500).json({ message: "Request failed", error });
+  }
+});
+
+
+libraryRouter.patch(
+  '/books/:id',
+  [authMiddleware, creatorMiddleware],
+  async (req, res) => {
+    try {
+      const updatedBook = await booksModel.findOneAndUpdate(
+        { _id: req.params.id, creatorId: req.user }, 
+        req.body,
+        { new: true } 
+      );
+
+      if (!updatedBook) {
+        return res.status(404).json({ message: "Book not found or unauthorized" });
+      }
+
+      res.status(200).json({ message: "Data updated", data: updatedBook });
+    } catch (error) {
+      res.status(500).json({ message: "Request failed", error });
+    }
+  }
+);
+
 
 module.exports=libraryRouter
