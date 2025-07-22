@@ -23,7 +23,7 @@ function UpdateAndDelete() {
 
   async function getBooks() {
     try {
-      const res = await fetch("https://library-app-1-26pr.onrender.com/library/books", {
+      const res = await fetch("https://library-app-1-26pr.onrender.com/library/createdBooks", {
         method: "GET",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -31,6 +31,7 @@ function UpdateAndDelete() {
       });
       const data = await res.json();
       setBooks(data);
+      console.log(data)
     } catch (error) {
       console.log(error);
     }

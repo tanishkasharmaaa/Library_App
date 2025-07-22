@@ -10,6 +10,7 @@ import {
   Spinner,
   useToast,
 } from "@chakra-ui/react";
+import MarkDownReview from "../components/markdown";
 
 export default function DisplayBook() {
   const [book, setBook] = useState({});
@@ -101,25 +102,7 @@ export default function DisplayBook() {
             </Text>
           )}
 
-          {book.storyContent && (
-  <Box w="100%" bg="gray.50" p={4} borderRadius="lg">
-    {book.storyContent.split("\n").map((line, index) => {
-      if (line.startsWith("# ")) {
-        return (
-          <Heading size="md" mt={4} key={index} color="blue.700">
-            {line.replace("# ", "")}
-          </Heading>
-        );
-      } else {
-        return (
-          <Text mt={2} key={index} color="gray.700">
-            {line}
-          </Text>
-        );
-      }
-    })}
-  </Box>
-)}
+          <MarkDownReview storyContent={book.storyContent}/>
 
         </VStack>
       </Box>

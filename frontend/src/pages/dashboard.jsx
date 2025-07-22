@@ -117,10 +117,12 @@ const bgCard = useColorModeValue("white", "white");
         </Flex>
 <Input type="text" placeholder="Search your query eg: new=1 ,old=1 " onChange={handleSearch} />
         {/* Dashboard Content */}
+        
         <Grid
           templateColumns={["1fr", "repeat(2, 1fr)", "repeat(3, 1fr)"]}
           gap={6}
           alignItems="stretch"
+          pt={4}
         >
           {result.map((ele, i) => (
             <Box
