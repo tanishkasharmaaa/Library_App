@@ -147,11 +147,11 @@ function UpdateAndDelete() {
               {[
                 { label: "Title", name: "title", type: "text" },
                 { label: "Author", name: "author", type: "text" },
-                { label: "Pages", name: "pages", type: "number" },
+                {label:"Description", name:"description",type:"text"},
                 { label: "Language", name: "language", type: "text" },
-                { label: "Publisher", name: "bookPublisher", type: "text" },
+                { label: "Publisher", name: "publisher", type: "text" },
                 { label: "Cover Image URL", name: "coverImageUrl", type: "text" },
-                { label: "Available Copies", name: "availableCopies", type: "number" },
+                
               ].map((field) => (
                 <FormControl key={field.name}>
                   <FormLabel fontSize="sm">{field.label}</FormLabel>
@@ -166,13 +166,13 @@ function UpdateAndDelete() {
               ))}
 
               <FormControl>
-                <FormLabel>Description / Story</FormLabel>
+                <FormLabel>Story Content</FormLabel>
                 <Textarea
-                  name="description"
+                  name="storyContent"
                   placeholder="Use # for subtitles, * or - for bullet points"
                   rows={6}
                   resize="vertical"
-                  value={ele.description || ""}
+                  value={ele.storyContent || ""}
                   onChange={(e) => handleInput(e, i)}
                   borderColor="gray.300"
                   bg="gray.50"

@@ -1,18 +1,19 @@
 import { Box, Button, Flex, Heading, Text } from "@chakra-ui/react";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 function Home() {
-  let navigate=useNavigate()
-let getToken=localStorage.getItem("token")
-if(getToken!==null){
-   
-    navigate('/dashboard')
-}
-function handleButton(){
-   
-    navigate("/register")
-}
+ const navigate = useNavigate();
 
+  useEffect(() => {
+    const getToken = localStorage.getItem("token");
+    if (getToken !== null) {
+      navigate('/dashboard');
+    }
+  }, [navigate]);
+
+  const handleButton = () => {
+    navigate("/register");
+  };
 
   return (
     <Box

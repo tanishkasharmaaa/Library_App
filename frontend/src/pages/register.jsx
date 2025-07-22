@@ -11,7 +11,7 @@ import {
   Link,
   useColorModeValue,
 } from "@chakra-ui/react";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 function Register() {
@@ -27,9 +27,11 @@ function Register() {
   const [alertMessage, setAlertMessage] = useState(null);
   const [alertStatus, setAlertStatus] = useState(null);
 
+   useEffect(() => {
   if (token) {
     navigate("/dashboard");
   }
+}, [token, navigate]);
 
   const handleFormInfo = (e) => {
     const { name, value } = e.target;
@@ -67,6 +69,8 @@ function Register() {
       setAlertMessage("All fields are required.");
     }
   };
+
+
 
   const cardBg = useColorModeValue("whiteAlpha.900", "gray.800");
 
