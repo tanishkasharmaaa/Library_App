@@ -37,6 +37,15 @@ libraryRouter.get('/books', [authMiddleware, userMiddleware], async (req, res) =
     }
 });
 
+libraryRouter.get('/books/:id', [authMiddleware, userMiddleware], async (req, res) => {
+    try {
+        const books = await booksModel.findById(req.params.id)
+        res.send(books);
+    } catch (error) {
+        res.status(500).send({ message: "Failed to fetch books", error });
+    }
+});
+
 libraryRouter.delete('/books/:id',[authMiddleware,creatorMiddleware],async(req,res)=>{
     try {
         const books=await booksModel.findByIdAndDelete({_id:req.params.id})
