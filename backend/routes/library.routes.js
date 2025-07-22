@@ -8,7 +8,7 @@ const creatorMiddleware=require("../middleware/creatorMiddleware")
 
 libraryRouter.use(express.json());
 
-libraryRouter.post('/create',[authMiddleware,creatorMiddleware],async(req,res)=>{
+libraryRouter.post('/create',authMiddleware,creatorMiddleware,async(req,res)=>{
     const {title,author,description,genres,pages,language,publisher,coverImageUrl,availableCopies,storyContent} = req.body
     try {
         const books=await booksModel({
@@ -31,7 +31,7 @@ libraryRouter.post('/create',[authMiddleware,creatorMiddleware],async(req,res)=>
     }
 })
 
-libraryRouter.get('/books', [authMiddleware, userMiddleware], async (req, res) => {
+libraryRouter.get('/books', authMiddleware, userMiddleware, async (req, res) => {
     try {
         let query = {};
 
@@ -50,7 +50,7 @@ libraryRouter.get('/books', [authMiddleware, userMiddleware], async (req, res) =
     }
 });
 
-libraryRouter.get('/books/:id', [authMiddleware, userMiddleware], async (req, res) => {
+libraryRouter.get('/books/:id', authMiddleware, userMiddleware, async (req, res) => {
     try {
         const books = await booksModel.findById(req.params.id)
         res.send(books);
@@ -59,7 +59,8 @@ libraryRouter.get('/books/:id', [authMiddleware, userMiddleware], async (req, re
     }
 });
 
-libraryRouter.get('/createdBooks',async(req,res)=>{
+libraryRouter.get('/createdBooks',authMiddleware, creatorMiddleware,async(req,res)=>{
+    console.log(req.user)
     try {
         const createdBooks= await booksModel.find({creatorId:req.user})
         res.send(createdBooks)
@@ -69,7 +70,7 @@ libraryRouter.get('/createdBooks',async(req,res)=>{
     }
 })
 
-libraryRouter.delete('/books/:id', [authMiddleware, creatorMiddleware], async (req, res) => {
+libraryRouter.delete('/books/:id',authMiddleware, creatorMiddleware, async (req, res) => {
   try {
     const deletedBook = await booksModel.findOneAndDelete({
       _id: req.params.id,
@@ -89,7 +90,7 @@ libraryRouter.delete('/books/:id', [authMiddleware, creatorMiddleware], async (r
 
 libraryRouter.patch(
   '/books/:id',
-  [authMiddleware, creatorMiddleware],
+  authMiddleware, creatorMiddleware,
   async (req, res) => {
     try {
       const updatedBook = await booksModel.findOneAndUpdate(

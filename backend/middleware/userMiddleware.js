@@ -3,8 +3,7 @@ const userModel = require("../models/User");
 const dotenv=require("dotenv").config();
 
 const userMiddleware=(req,res,next)=>{
-    const authHeader=req.headers["authorization"];
-    const token=authHeader&&authHeader.split(" ")[1];
+    const token=req.headers.authorization?.split(" ")[1];
     jwt.verify(token,"masaiLibrary",async function(err,decoded){
     if(err){
         res.status(400).send(err)
