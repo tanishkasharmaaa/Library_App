@@ -12,6 +12,8 @@ const bookSchema = new mongoose.Schema(
       ref: "User",
       required: true,
     },
+    author:{type:String},
+    genres:{type:[String]}
   },
   {
     timestamps: true,
